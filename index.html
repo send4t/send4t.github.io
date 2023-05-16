@@ -23,9 +23,14 @@ function predict() {
   var number = document.querySelector("input[name=number]").value;
   var image = images[Math.floor(Math.random() * images.length)];
   gif.src = image;
+  document.getElementById("results").innerHTML = "Results is " + number;
 }
 
 document.querySelector("input[type=submit]").addEventListener("click", predict);
 </script>
 </body>
 </html>
+
+
+
+
