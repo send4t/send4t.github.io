@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Prediction Website</title>
+</head>
+<body>
+<h1>Prediction Website</h1>
+<p>Enter a number from 1 to 5 to predict the outcome of the gif.</p>
+<input type="number" name="number" min="1" max="5" />
+<input type="submit" value="Predict" />
+<div id="gif"></div>
+<script>
+var gif = document.getElementById("gif");
+var images = [
+  "https://i.imgur.com/a.jpg",
+  "https://i.imgur.com/b.jpg",
+  "https://i.imgur.com/c.jpg",
+  "https://i.imgur.com/d.jpg",
+  "https://i.imgur.com/e.jpg"
+];
+
+function predict() {
+  var number = document.querySelector("input[name=number]").value;
+  var image = images[Math.floor(Math.random() * images.length)];
+  gif.src = image;
+}
+
+document.querySelector("input[type=submit]").addEventListener("click", predict);
+</script>
+</body>
+</html>
