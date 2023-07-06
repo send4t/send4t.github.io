@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Prediction Website</title>
+  <title>Prediction Website</title>
 </head>
 <body>
-<h1>Prediction Website</h1>
-<p>Enter a number from 1 to 5 to predict the outcome of the gif.</p>
-<input type="number" name="number" min="1" max="5" />
-<input type="submit" value="Predict" />
-<div id="gif"><img id="gif"></img></div>
-<script>
-var gif = document.getElementById("gif");
-var images = [
-"https://pasteboard.co/Z0G5mG0QyVcD.png",
-  "https://pasteboard.co/FtKviTHvLR67.png"
-];
+  <h1>Prediction Website</h1>
+  <p>Enter a number from 1 to 5 to predict the outcome of the gif.</p>
+  <input type="number" name="number" min="1" max="5" />
+  <button type="button" onclick="predict()">Predict</button>
+  <div id="gif"></div>
+  <script>
+    var gif = document.getElementById("gif");
+    var images = [
+      "https://pasteboard.co/Z0G5mG0QyVcD.png",
+      "https://pasteboard.co/FtKviTHvLR67.png"
+    ];
 
-function predict() {
-  var number = document.querySelector("input[name=number]").value;
-  var image = images[Math.floor(Math.random() * images.length)];
-  gif.src = image;
- 
-}
+    function predict() {
+      var number = document.querySelector("input[name=number]").value;
+      var image = images[Math.floor(Math.random() * images.length)];
 
-document.querySelector("input[type=submit]").addEventListener("click", predict);
-</script>
+      var imgElement = document.createElement("img");
+      imgElement.src = image;
+
+      gif.innerHTML = ""; // Clear previous image
+      gif.appendChild(imgElement);
+    }
+  </script>
 </body>
 </html>
+
+
+
 
 
 
