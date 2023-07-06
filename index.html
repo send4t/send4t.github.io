@@ -6,10 +6,11 @@
 <body>
   <h1>Prediction Website</h1>
   <h2>Enter a number from 1 to 5 to predict the outcome of the gif.</h2>
-  <img scr="https://gcdnb.pbrd.co/images/OqkNyycho3D0.gif"></img>
+  <img src="https://gcdnb.pbrd.co/images/OqkNyycho3D0.gif">
   <input type="number" name="number" min="1" max="5" />
   <button type="button" onclick="predict()">Predict</button>
   <div id="gif"></div>
+  <div id="result"></div>
   <script>
     var gif = document.getElementById("gif");
     var images = [
@@ -18,7 +19,7 @@
     ];
 
     function predict() {
-      var number = document.querySelector("input[name=number]").value;
+      var number = parseInt(document.querySelector("input[name=number]").value);
       var image = images[Math.floor(Math.random() * images.length)];
 
       var imgElement = document.createElement("img");
@@ -26,14 +27,16 @@
 
       gif.innerHTML = ""; // Clear previous image
       gif.appendChild(imgElement);
+
+      var result = document.getElementById("result");
+      result.innerHTML = ""; // Clear previous result
+
+      if (number === Math.floor(Math.random() * images.length) + 1) {
+        result.textContent = "You won!";
+      } else {
+        result.textContent = "You lost!";
+      }
     }
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
