@@ -3,17 +3,5 @@
     "author": "József Attila",
     "title": "MEGFÁRADT EMBER",
     "poem": "A földeken néhány komoly nek a csillagok."
-  },
-  "2": {
-    "name": "Alice",
-    "country": "Austria",
-    "tasks": ["develop", "design", "test"]
-  },
-  "3": {
-    "name": "Alice",
-    "country": "Austria",
-    "tasks": ["develop", "design", "test"]
-  }
-
-  
+  } 
 }
