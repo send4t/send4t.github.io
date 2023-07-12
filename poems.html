@@ -12,18 +12,6 @@
   <div id="poem"></div>
   <script>
     
-    function predict() {
-      fetch('./example.json')
-        .then(response => response.json())
-        .then(data => {
-          const poemElement = document.getElementById('poem');
-          poemElement.textContent = data.poem;
-          author.textContent(data.author)
-        })
-        .catch(error => console.error(error));
-      title.textContent("proba")
-       author.textContent("")
-    }
   </script>
 </body>
 </html>
