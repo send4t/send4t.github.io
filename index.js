@@ -4,9 +4,7 @@ poem.textContent = "this is a vers"
  
     function predict() {
     
-     poem.textContent = "this is a vers after button pushed"
-
-     
+     poem.textContent = "this is a vers after button pushed"     
     }
 
     
