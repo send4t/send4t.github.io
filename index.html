@@ -32,8 +32,7 @@
       gif.innerHTML = ""; // Clear previous image
       gif.appendChild(imgElement);
 
-      var result = document.getElementById("result");
-      result.innerHTML = ""; // Clear previous result
+      
 
       if (number === Math.floor(Math.random() * images.length) + 1) {
         result.textContent = "You won!";
@@ -41,6 +40,9 @@
         result.textContent = "You lost!";
       }
     }
+
+    var result = document.getElementById("result");
+      result.innerHTML = ""; // Clear previous result
   </script>
 </body>
 </html>
