@@ -24,10 +24,10 @@
     function predict() {
     
       var number = parseInt(document.querySelector("input[name=number]").value);
-      var random = Math.floor(Math.random() * images.length)
+      var random =  Math.floor(Math.random() * images.length)
       var image = images[random];
       
-      document.getElementById(theImage).src=image]); // Replace first image
+      document.getElementById(theImage).src=image; // Replace first image with random picture
       
       var imgElement = document.createElement("img");
       imgElement.src = image;
