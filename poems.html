@@ -6,19 +6,20 @@
 <body>
   <h1>Véletlen vers</h1>
   <h2>Enter a number from 1 to 5 to predict the outcome of the gif.</h2>
-   <button type="button" onclick="predict()">Mutass egy verset</button>
+  <button type="button" onclick="predict()">Mutass egy verset</button>
   <div id="author"></div>
   <div id="title"></div>
   <div id="poem"></div>
- <script >
-   import myJson from './example.json' assert {type: 'json'};
-
-poem.textContent = "this is a vers"
- 
+  <script>
     function predict() {
-    
-     poem.textContent = "this is a vers after button pushed"     
+      fetch('./example.json')
+        .then(response => response.json())
+        .then(data => {
+          const poemElement = document.getElementById('poem');
+          poemElement.textContent = data.poem;
+        })
+        .catch(error => console.error(error));
     }
- </script>
+  </script>
 </body>
 </html>
