@@ -27,7 +27,7 @@
       var random =  Math.floor(Math.random() * images.length)
       var image = images[random];
       
-      document.getElementById(theImage).src=image; // Replace first image with random picture
+      document.getElementById("theImage").src=image; // Replace first image with random picture
       
       var imgElement = document.createElement("img");
       imgElement.src = image;
@@ -39,7 +39,7 @@
       result.innerHTML = ""; // Clear previous result
       
 
-      if (number === random {
+      if (number === random) {
         result.textContent = "You won!";
       } else {
         result.textContent = "You lost!";
