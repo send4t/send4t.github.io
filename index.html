@@ -11,6 +11,7 @@
   <button type="button" onclick="predict()">Predict</button>
   <div id="gif"></div>
   <div id="result"></div>
+  <div id="wanna"></div>
   <script>
     var gif = document.getElementById("gif");
     var images = [
@@ -37,8 +38,8 @@
       gif.appendChild(imgElement);
      var result = document.getElementById("result");
       result.innerHTML = ""; // Clear previous result
-      result.textContent ="this is number variable" + number
-      result.textContent = "this is random variable" +random
+       wanna.textContent ="this is number variable" + number
+      wanna.textContent = "this is random variable" +random
 
       if (number === random) {
         result.textContent = "You won!";
