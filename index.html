@@ -6,7 +6,7 @@
 <body>
   <h1>Prediction Website</h1>
   <h2>Enter a number from 1 to 5 to predict the outcome of the gif.</h2>
-  <img src="https://gcdnb.pbrd.co/images/OqkNyycho3D0.gif" width="350" >
+  <img id="theImage" src="https://gcdnb.pbrd.co/images/OqkNyycho3D0.gif" width="350" >
   <input type="number" name="number" min="1" max="5" />
   <button type="button" onclick="predict()">Predict</button>
   <div id="gif"></div>
@@ -25,7 +25,9 @@
     
       var number = parseInt(document.querySelector("input[name=number]").value);
       var image = images[Math.floor(Math.random() * images.length)];
-
+      
+      document.getElementById(theImage).src=image]); // Replace first image
+      
       var imgElement = document.createElement("img");
       imgElement.src = image;
       imgElement.width="350";
