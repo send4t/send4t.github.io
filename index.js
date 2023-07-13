@@ -1,13 +1,7 @@
-//import myJson from 'example.json' assert {type: 'json'};
+import random from 'random';
 
-console.log(myJson);
-console.log(myJson.name);
+const poems = require('./example.json');
+const poem = random.choice(poems);
 
-poem.textContent = "this is a vers";
- 
-   let function predict() {
-     poem.textContent = "this is a vers after button pushed";     
-    }
-
-    
-
+const poemDiv = document.getElementById('poem');
+poemDiv.innerHTML = poem;
