@@ -1,7 +1,8 @@
 {
-  "poem1": {
-    "author": "József Attila",
-    "title": "MEGFÁRADT EMBER",
-    "poem": "A földeken néhány komoly nek a csillagok."
-  } 
+  {
+   name: 'Alice',
+  country: 'Austria',
+   tasks: [ 'develop', 'design', 'test' ],
+   age: 30
+ }
 }
