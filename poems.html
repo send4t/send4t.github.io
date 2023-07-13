@@ -7,7 +7,6 @@
   <h1>Véletlen vers</h1>
   <h2>Enter a number from 1 to 5 to predict the outcome of the gif.</h2>
   <button type="button" onclick="logMovies()">Mutass egy verset</button>
-  <div id="author"></div>
   <div id="title"></div>
   <div id="poem"></div>
 
@@ -21,16 +20,15 @@ async function logMovies() {
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(text, "text/xml");
 
-  const authorElement = xmlDoc.getElementsByTagName("szerzo")[0];
+  
   const titleElement = xmlDoc.getElementsByTagName("cim")[0];
   const poemElement = xmlDoc.getElementsByTagName("versszoveg")[0];
 
-  if (authorElement && titleElement && poemElement) {
-    const author = authorElement.textContent;
+  if (titleElement && poemElement) {
+   
     const title = titleElement.textContent;
     const poem = poemElement.textContent;
 
-    document.getElementById("author").innerHTML = `Author: ${author}`;
     document.getElementById("title").innerHTML = `Title: ${title}`;
     document.getElementById("poem").innerHTML = `Poem: ${poem}`;
   } else {
