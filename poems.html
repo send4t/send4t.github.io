@@ -30,7 +30,7 @@ async function logMovies() {
     const poem = poemElement.textContent;
 
     document.getElementById("title").innerHTML = `Title: ${title}`;
-    document.getElementById("poem").innerHTML = `Poem: ${poem}`;
+    document.getElementById("poem").textContent = poem;
   } else {
     console.error("XML structure is not as expected. Check the tag names in the response.");
   }
