@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title style="text-align:center;">Random vers</title>
+  <title>Random vers</title>
 </head>
 <body>
-  <h1 style="text-align:center;">Véletlen vers</h1>
- 
-  <div><button type="button" onclick="logMovies()">Mutass egy verset</button></div>
-  <div id="title" style="text-align:center;"></div>
-  <pre id="poem" style="text-align:center;"></pre>
-
+  <h1>Véletlen vers</h1>
+  <h2>Enter a number from 1 to 5 to predict the outcome of the gif.</h2>
+  <button type="button" onclick="logMovies()">Mutass egy verset</button>
+  <div id="title"></div>
+  <pre id="poem"></pre>
 <script>
 async function logMovies() {
-  const api_key = 734caf99831f8a5605b0450b0c0f99c2
-  const response = await fetch("https://cors-anywhere.herokuapp.com/https://api.poet.hu/vers.php?f=vonyi&j="+api_key);
+  const response = await fetch("https://cors-anywhere.herokuapp.com/https://api.poet.hu/vers.php?f=vonyi&j=734caf99831f8a5605b0450b0c0f99c2");
   const text = await response.text();
-
   console.log(text); // Log the XML response to inspect its structure
-
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(text, "text/xml");
-
   
   const titleElement = xmlDoc.getElementsByTagName("cim")[0];
   const poemElement = xmlDoc.getElementsByTagName("versszoveg")[0];
-
   if (titleElement && poemElement) {
    
     const title = titleElement.textContent;
     const poem = poemElement.textContent;
 
-    document.getElementById("title").innerHTML = `Cím: ${title}`;
+    document.getElementById("title").innerHTML = `Title: ${title}`;
     document.getElementById("poem").textContent = poem;
   } else {
     console.error("XML structure is not as expected. Check the tag names in the response.");
@@ -39,3 +33,6 @@ async function logMovies() {
 </script>
 </body>
 </html>
+
+
+
