@@ -5,7 +5,7 @@ console.log(myJson.name);
 
 poem.textContent = "this is a vers";
  
-    function predict() {
+   let function predict() {
      poem.textContent = "this is a vers after button pushed";     
     }
 
