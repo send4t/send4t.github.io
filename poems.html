@@ -1,8 +1,6 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-   <
   <title>Random vers</title>
 </head>
 <body>
@@ -13,10 +11,22 @@
   <div id="title"></div>
   <div id="poem"></div>
 
-<script> async function logMovies() {
+<script>
+async function logMovies() {
   const response = await fetch("https://cors-anywhere.herokuapp.com/https://api.poet.hu/vers.php?f=vonyi&j=734caf99831f8a5605b0450b0c0f99c2");
-  const movies = await response.json();
-  console.log(movies);
-}</script>
+  const text = await response.text();
+
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(text, "text/xml");
+
+  const author = xmlDoc.getElementsByTagName("szerzo")[0].textContent;
+  const title = xmlDoc.getElementsByTagName("cim")[0].textContent;
+  const poem = xmlDoc.getElementsByTagName("versszoveg")[0].textContent;
+
+  document.getElementById("author").innerHTML = `Author: ${author}`;
+  document.getElementById("title").innerHTML = `Title: ${title}`;
+  document.getElementById("poem").innerHTML = `Poem: ${poem}`;
+}
+</script>
 </body>
 </html>
