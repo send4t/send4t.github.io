@@ -3,11 +3,11 @@
 <head>
   <title>Random vers</title>
 <style>
-  .alert-button {
+  alert-button {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     width: 50%;
 }
-  .alert-button:hover {
+  alert-button:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     width: 50%;
 }
@@ -61,6 +61,7 @@ async function logMovies() {
     
   } else {
     console.error("XML structure is not as expected. Check the tag names in the response.");
+    document.getElementById("poem").textContent = "API nem adott verset, kattints megint";
   }
 }
   
