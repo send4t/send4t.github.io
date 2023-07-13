@@ -6,12 +6,12 @@
 <body>
   <h1 style="text-align:center;">Véletlen vers</h1>
  
-  <button type="button" onclick="predict()">Mutass egy verset</button>
+  <button type="button" onclick="logMovies()">Mutass egy verset</button>
   <div id="title" style="text-align:center;"></div>
   <pre id="poem" style="text-align:center;"></pre>
 
 <script>
-async function predict() {
+async function logMovies() {
   const api_key = 734caf99831f8a5605b0450b0c0f99c2
   const response = await fetch("https://cors-anywhere.herokuapp.com/https://api.poet.hu/vers.php?f=vonyi&j="+api_key);
   const text = await response.text();
