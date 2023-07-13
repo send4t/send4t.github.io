@@ -16,16 +16,26 @@ async function logMovies() {
   const response = await fetch("https://cors-anywhere.herokuapp.com/https://api.poet.hu/vers.php?f=vonyi&j=734caf99831f8a5605b0450b0c0f99c2");
   const text = await response.text();
 
+  console.log(text); // Log the XML response to inspect its structure
+
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(text, "text/xml");
 
-  const author = xmlDoc.getElementsByTagName("szerzo")[0].textContent;
-  const title = xmlDoc.getElementsByTagName("cim")[0].textContent;
-  const poem = xmlDoc.getElementsByTagName("versszoveg")[0].textContent;
+  const authorElement = xmlDoc.getElementsByTagName("szerzo")[0];
+  const titleElement = xmlDoc.getElementsByTagName("cim")[0];
+  const poemElement = xmlDoc.getElementsByTagName("versszoveg")[0];
 
-  document.getElementById("author").innerHTML = `Author: ${author}`;
-  document.getElementById("title").innerHTML = `Title: ${title}`;
-  document.getElementById("poem").innerHTML = `Poem: ${poem}`;
+  if (authorElement && titleElement && poemElement) {
+    const author = authorElement.textContent;
+    const title = titleElement.textContent;
+    const poem = poemElement.textContent;
+
+    document.getElementById("author").innerHTML = `Author: ${author}`;
+    document.getElementById("title").innerHTML = `Title: ${title}`;
+    document.getElementById("poem").innerHTML = `Poem: ${poem}`;
+  } else {
+    console.error("XML structure is not as expected. Check the tag names in the response.");
+  }
 }
 </script>
 </body>
