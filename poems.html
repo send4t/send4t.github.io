@@ -8,10 +8,16 @@
 
 <script>
 var req = new XMLHttpRequest();
+var proxyUrl = `https://cors-anywhere.herokuapp.com/https://api.poet.hu/vers.php?f=vonyi&j=734caf99831f8a5605b0450b0c0f99c2`;
+
+fetch(proxyUrl)
+
+	
+
 var url = "https://api.poet.hu/vers.php?f=vonyi&j=";
 var api_key = "734caf99831f8a5605b0450b0c0f99c2";
 
-req.open("GET", url + api_key);
+req.open("GET", "https://cors-anywhere.herokuapp.com/https://api.poet.hu/vers.php?f=vonyi&j=734caf99831f8a5605b0450b0c0f99c2");
 req.send();
 
 req.addEventListener("load", function(){
