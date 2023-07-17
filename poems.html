@@ -96,6 +96,9 @@
           // Hide "Like" button
           document.getElementById("likeButtonContainer").style.display = "none";
 
+          // Clear previous GIF
+          document.getElementById("gifContainer").innerHTML = "";
+
           // Create GIF element
           const gifElement = document.createElement("img");
           gifElement.src = gifUrl;
