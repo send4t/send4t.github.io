@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Random verse</title>
+  <title>Random vers</title>
   <style>
     button {
       box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -24,68 +24,74 @@
   </style>
 </head>
 <body>
-  <h1 text-align: center;>Random Verse</h1>
-  <div><button type="button" onclick="logPoem()">Show a Verse</button></div>
+  <h1>Véletlen vers</h1>
+  <div><button type="button" onclick="logPoem()">Mutass egy verset</button></div>
   <div id="title"></div>
   <pre id="poem"></pre>
   <div id="likeButtonContainer"></div>
   <div id="gifContainer"></div>
 
   <script>
-    // Fetch poems from external JSON file
-    fetch('poems.json')
-      .then(response => response.json())
-      .then(data => {
-        const poems = data.poems;
+    function get_poems_from_file(file_path) {
+      try {
+        var file = new XMLHttpRequest();
+        file.open("GET", file_path, false);
+        file.send(null);
+        var poems = JSON.parse(file.responseText);
+        return poems;
+      } catch (error) {
+        console.error("Error loading poems:", error);
+        return [];
+      }
+    }
 
-        function getRandomPoem() {
-          const randomIndex = Math.floor(Math.random() * poems.length);
-          return poems[randomIndex];
-        }
+    function getRandomPoem(poems) {
+      if (poems.length > 0) {
+        var randomIndex = Math.floor(Math.random() * poems.length);
+        return poems[randomIndex];
+      } else {
+        return null;
+      }
+    }
 
-        function logPoem() {
-          // Delete all previous entries
-          document.getElementById("title").innerHTML = "";
-          document.getElementById("poem").textContent = "";
-          document.getElementById("likeButtonContainer").innerHTML = "";
-          document.getElementById("gifContainer").innerHTML = "";
+    function logPoem() {
+      var poems = get_poems_from_file("poems.json");
 
-          const poem = getRandomPoem();
-          if (poem) {
-            const title = poem.title;
-            const content = poem.content;
+      var titleElement = document.getElementById("title");
+      var poemElement = document.getElementById("poem");
+      var likeButtonContainer = document.getElementById("likeButtonContainer");
+      var gifContainer = document.getElementById("gifContainer");
 
-            document.getElementById("title").innerHTML = `Title: ${title}`;
-            document.getElementById("poem").textContent = content;
+      // Delete all previous entries
+      titleElement.innerHTML = "";
+      poemElement.textContent = "";
+      likeButtonContainer.innerHTML = "";
+      gifContainer.innerHTML = "";
 
-            // Create "Like" button
-            const likeButton = document.createElement("button");
-            likeButton.textContent = "Like";
-            likeButton.addEventListener("click", showGif);
-            document.getElementById("likeButtonContainer").appendChild(likeButton);
-          } else {
-            console.error("No poems found in the list.");
-            document.getElementById("poem").textContent = "No available poem.";
-          }
-        }
+      var poem = getRandomPoem(poems);
+      if (poem) {
+        var title = poem.title;
+        var content = poem.content;
 
-        function showGif() {
-          const gifUrl = "https://media.tenor.com/DBFq-CWWkGoAAAAC/baby-booty.gif"; // Replace with your own GIF URL
+        titleElement.innerHTML = "Cím: " + title;
+        poemElement.textContent = content;
 
-          // Hide "Like" button
-          document.getElementById("likeButtonContainer").style.display = "none";
+        // Create "Like" button
+        var likeButton = document.createElement("button");
+        likeButton.textContent = "Tetszik";
+        likeButton.addEventListener("click", showGif);
+        likeButtonContainer.appendChild(likeButton);
+      } else {
+        console.error("No poems found in the list.");
+        poemElement.textContent = "Nincs elérhető vers.";
+      }
+    }
 
-          // Create GIF element
-          const gifElement = document.createElement("img");
-          gifElement.src = gifUrl;
+    function showGif() {
+      // Add code to show a GIF here
+    }
 
-          document.getElementById("gifContainer").appendChild(gifElement);
-        }
-      })
-      .catch(error => {
-        console.error("Error fetching poems:", error);
-        document.getElementById("poem").textContent = "Error fetching poems.";
-      });
+    logPoem();
   </script>
 </body>
 </html>
