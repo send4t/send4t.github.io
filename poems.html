@@ -72,9 +72,10 @@
 
       var poem = getRandomPoem(poems);
       if (poem) {
+        var author = poem.author;
         var title = poem.title;
         var content = poem.content;
-        authorElement.innerHTML = "Szerző:" + author;
+        authorElement.innerHTML = "Szerző: " + author;
         titleElement.innerHTML = "Cím: " + title;
         poemElement.textContent = content;
 
