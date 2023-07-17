@@ -1,13 +1,14 @@
-
-{
-"title": "The Road Not Taken",
-"author": "Robert Frost",
-"content": "Two roads diverged in a yellow wood,\nAnd sorry I could not travel both\nAnd be one traveler, long I stood\nAnd looked down one as far as I could\nTo where it bent in the undergrowth;"
-}
-{
-"title": "The Road Not Taken",
-"author": "Robert Frost2",
-"content": "Masodik vers"
-}
-
-
+[
+  {
+    "title": "The Rose",
+    "content": "A beautiful rose\nWith petals so red\nIn the garden it grows\nBringing joy it spreads"
+  },
+  {
+    "title": "The Moon",
+    "content": "In the dark night sky\nThe moon shines bright\nIts gentle light\nFills the world with delight"
+  },
+  {
+    "title": "The River",
+    "content": "Flowing river, calm and wide\nReflecting nature's splendid pride\nTrees and flowers by its side\nIn its embrace, peace abides"
+  }
+]
