@@ -19,6 +19,7 @@
   <button onclick="convertPoem()">Convert</button>
   <h2>Converted Poem:</h2>
   <pre id="convertedPoem"></pre>
+  <button onclick="copyToClipboard()">Copy</button>
 
   <script>
     function convertPoem() {
@@ -30,6 +31,15 @@
     function convertToSingleLine(text) {
       var singleLineText = text.replace(/\n/g, '\\n');
       return singleLineText;
+    }
+
+    function copyToClipboard() {
+      var convertedPoem = document.getElementById("convertedPoem").textContent;
+      navigator.clipboard.writeText(convertedPoem).then(function() {
+        console.log("Copied to clipboard!");
+      }).catch(function(error) {
+        console.error("Failed to copy to clipboard:", error);
+      });
     }
   </script>
 </body>
