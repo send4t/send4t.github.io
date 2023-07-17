@@ -26,6 +26,7 @@
 <body>
   <h1>Véletlen vers</h1>
   <div><button type="button" onclick="logPoem()">Mutass egy verset</button></div>
+   <div id="author"></div>
   <div id="title"></div>
   <pre id="poem"></pre>
   <div id="likeButtonContainer"></div>
@@ -56,13 +57,14 @@
 
     function logPoem() {
       var poems = get_poems_from_file("poems.json");
-
+      var authorElement = document.getElementById("author");
       var titleElement = document.getElementById("title");
       var poemElement = document.getElementById("poem");
       var likeButtonContainer = document.getElementById("likeButtonContainer");
       var gifContainer = document.getElementById("gifContainer");
 
       // Delete all previous entries
+      authorElement.innerHTML = "";
       titleElement.innerHTML = "";
       poemElement.textContent = "";
       likeButtonContainer.innerHTML = "";
@@ -72,7 +74,7 @@
       if (poem) {
         var title = poem.title;
         var content = poem.content;
-
+        authorElement.innerHTML = "Szerző:" + title;
         titleElement.innerHTML = "Cím: " + title;
         poemElement.textContent = content;
 
