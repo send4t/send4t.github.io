@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Poem Converter</title>
+  <style>
+    textarea {
+      width: 100%;
+      height: 200px;
+    }
+    button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Poem Converter</h1>
+  <label for="poemInput">Paste your poem:</label>
+  <textarea id="poemInput"></textarea>
+  <button onclick="convertPoem()">Convert</button>
+  <h2>Converted Poem:</h2>
+  <pre id="convertedPoem"></pre>
+
+  <script>
+    function convertPoem() {
+      var poemInput = document.getElementById("poemInput").value;
+      var convertedPoem = convertToSingleLine(poemInput);
+      document.getElementById("convertedPoem").textContent = convertedPoem;
+    }
+
+    function convertToSingleLine(text) {
+      var singleLineText = text.replace(/\n/g, '\\n');
+      return singleLineText;
+    }
+  </script>
+</body>
+</html>
