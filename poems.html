@@ -1,4 +1,3 @@
-html
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,65 +32,54 @@ html
   <div id="gifContainer"></div>
 
   <script>
-    const poems = [
-      {
-        "title": "Poem 1",
-        "content": "This is the content of Poem 1."
-      },
-      {
-        "title": "Poem 2",
-        "content": "This is the content of Poem 2."
-      },
-      {
-        "title": "Poem 3",
-        "content": "This is the content of Poem 3."
-      }
-      // Add more poems to the list as needed
-    ];
+  import json
 
-    function getRandomPoem() {
-      const randomIndex = Math.floor(Math.random() * poems.length);
-      return poems[randomIndex];
-    }
+def get_poems_from_file(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            poems = json.load(file)
+        return poems
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+        return []
+    except json.JSONDecodeError:
+        print(f"Error decoding JSON file: {file_path}")
+        return []
 
-    function logPoem() {
-      // Delete all previous entries
-      document.getElementById("title").innerHTML = "";
-      document.getElementById("poem").textContent = "";
-      document.getElementById("likeButtonContainer").innerHTML = "";
-      document.getElementById("gifContainer").innerHTML = "";
+def getRandomPoem(poems):
+    if poems:
+        randomIndex = random.randint(0, len(poems) - 1)
+        return poems[randomIndex]
+    else:
+        return None
 
-      const poem = getRandomPoem();
-      if (poem) {
-        const title = poem.title;
-        const content = poem.content;
+def logPoem():
+    poems = get_poems_from_file("poems.json")
 
-        document.getElementById("title").innerHTML = `Cím: ${title}`;
-        document.getElementById("poem").textContent = content;
+  //  # Delete all previous entries
+    document.getElementById("title").innerHTML = ""
+    document.getElementById("poem").textContent = ""
+    document.getElementById("likeButtonContainer").innerHTML = ""
+    document.getElementById("gifContainer").innerHTML = ""
 
-        // Create "Like" button
-        const likeButton = document.createElement("button");
-        likeButton.textContent = "Tetszik";
-        likeButton.addEventListener("click", showGif);
-        document.getElementById("likeButtonContainer").appendChild(likeButton);
-      } else {
-        console.error("No poems found in the list.");
-        document.getElementById("poem").textContent = "Nincs elérhető vers.";
-      }
-    }
+    poem = getRandomPoem(poems)
+    if poem:
+        title = poem["title"]
+        content = poem["content"]
 
-    function showGif() {
-      const gifUrl = "https://media.tenor.com/DBFq-CWWkGoAAAAC/baby-booty.gif"; // Replace with your own GIF URL
+        document.getElementById("title").innerHTML = f"Cím: {title}"
+        document.getElementById("poem").textContent = content
 
-      // Hide "Like" button
-      document.getElementById("likeButtonContainer").style.display = "none";
+     //   # Create "Like" button
+        likeButton = document.createElement("button")
+        likeButton.textContent = "Tetszik"
+        likeButton.addEventListener("click", showGif)
+        document.getElementById("likeButtonContainer").appendChild(likeButton)
+    else:
+        console.error("No poems found in the list.")
+        document.getElementById("poem").textContent = "Nincs elérhető vers."
 
-      // Create GIF element
-      const gifElement = document.createElement("img");
-      gifElement.src = gifUrl;
-
-      document.getElementById("gifContainer").appendChild(gifElement);
-    }
+logPoem()
   </script>
 </body>
 </html>
