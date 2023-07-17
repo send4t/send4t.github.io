@@ -1,17 +1,17 @@
 [
   {
-    "author": "Kis Kalman",
     "title": "The Rose",
+    "author": "John Smith",
     "content": "A beautiful rose\nWith petals so red\nIn the garden it grows\nBringing joy it spreads"
   },
   {
-     "author": "Kis Kalman",
     "title": "The Moon",
+    "author": "Jane Doe",
     "content": "In the dark night sky\nThe moon shines bright\nIts gentle light\nFills the world with delight"
   },
   {
-      "author": "Kis Kalman",
     "title": "The River",
+    "author": "Mark Johnson",
     "content": "Flowing river, calm and wide\nReflecting nature's splendid pride\nTrees and flowers by its side\nIn its embrace, peace abides"
   }
 ]
