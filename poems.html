@@ -40,6 +40,26 @@
   <div id="gifContainer"></div>
 
   <script>
+var cors = require('cors')
+ 
+var corsOptions = {
+  origin: 'https://vast-lime-cocoon.cyclic.app/books',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+ 
+app.get('/books', cors(corsOptions), function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for only example.com.'})
+})
+ 
+app.listen(80, function () {
+  console.log('CORS-enabled web server listening on port 80')
+})
+
+
+
+
+
+    
   async function fetchMoviesJSON() {
   const response = await fetch('https://vast-lime-cocoon.cyclic.app/books');
   const movies = await response.json();
