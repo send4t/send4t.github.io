@@ -40,6 +40,18 @@
   <div id="gifContainer"></div>
 
   <script>
+  async function fetchMoviesJSON() {
+  const response = await fetch('/movies');
+  const movies = await response.json();
+  return movies;
+}
+
+fetchMoviesJSON().then(movies => {
+  movies; // fetched movies
+});
+    console.log(movies)
+
+    
     function get_poems_from_file(file_path) {
       try {
         var file = new XMLHttpRequest();
