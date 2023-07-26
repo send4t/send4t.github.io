@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "https://vast-lime-cocoon.cyclic.app/(.*)",
+      "source": "https://extinct-jade-bedclothes.cyclic.app/(.*)",
       "source": "/api/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
