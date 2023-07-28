@@ -45,7 +45,8 @@
   
 const express = require('express');
 const app = express();
-const fetch = require('node-fetch'); // Require the node-fetch library
+const fetch = require('@vercel/fetch')(require('some-fetch-implementation'));
+
 
 async function fetchMoviesJSON() {
   try {
