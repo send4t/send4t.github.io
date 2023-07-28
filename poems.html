@@ -63,7 +63,14 @@ app.use((req, res, next) => {
 
     
   async function fetchMoviesJSON() {
-  const response = await fetch('https://extinct-jade-bedclothes.cyclic.app');
+  const response = await fetch('https://extinct-jade-bedclothes.cyclic.app/', {
+  method: 'GET',
+    mode: 'cors',
+    headers: {
+    'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': *
+  }
+  })
   const movies = await response.json();
   return movies;
     console.log(movies+'json')
