@@ -45,37 +45,35 @@
   
 const express = require('express');
 const app = express();
+const fetch = require('node-fetch'); // Require the node-fetch library
 
-
-    
-  async function fetchMoviesJSON() {
-  const response = await fetch('https://extinct-jade-bedclothes.cyclic.app/', {
-  method: 'GET',
-    mode: 'cors',
-    headers: {
-    'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': *
+async function fetchMoviesJSON() {
+  try {
+    const response = await fetch('https://extinct-jade-bedclothes.cyclic.app/');
+    const movies = await response.json();
+    console.log(movies); // Logs fetched movies
+    return movies;
+  } catch (error) {
+    console.error('Error fetching movies:', error);
+    return [];
   }
-  })
-  const movies = await response.json();
-  return movies;
-    console.log(movies+'json')
-    console.log(1);
 }
 
-fetchMoviesJSON().then(movies => {
-  movies; // fetched movies
+fetchMoviesJSON().then((movies) => {
+  console.log(movies); // Logs fetched movies
+  console.log(movies.title); // Access the title of the movies object if it exists
 });
-    console.log(movies);
-    console.log(movies.title);
 
 async function fetchMovies() {
-  const response = await fetch('https://extinct-jade-bedclothes.cyclic.app');
-  // waits until the request completes...
-  console.log(response+'response');
-   console.log(2);
+  try {
+    const response = await fetch('https://extinct-jade-bedclothes.cyclic.app');
+    console.log(response); // Logs the HTTP response object
+  } catch (error) {
+    console.error('Error fetching movies:', error);
+  }
 }
 
+    
  
     
 
