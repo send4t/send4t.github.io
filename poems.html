@@ -35,6 +35,7 @@
   <div><button type="button" onclick="logPoem()">Mutass egy verset</button></div>
   <div><button type="button" onclick="fetchMovies()">Mutass egy konyvet</button></div>
     <div><button type="button" onclick="fetchMoviesJSON()">Mutass egy konyvetJSON</button></div>
+   <div><button type="button" onclick="callAPIRead()">Mutass egy konyvetAPIread</button></div>
    <div id="author"></div>
   <div id="title"></div>
   <pre id="poem"></pre>
@@ -45,6 +46,13 @@
   
 
 import fetch from 'node-fetch';
+
+const express = require("express");
+const bodyParser = require("body-parser");
+
+const app = express();
+
+
 
 const response = await fetch('https://github.com/');
 const body = await response.text();
@@ -63,6 +71,25 @@ async function fetchMoviesJSON() {
     return [];
   }
 }
+
+    var callAPIRead =()=>{
+            // instantiate a headers object
+            var myHeaders = new Headers();
+            // add content type header to object
+            myHeaders.append("Content-Type", "application/json");
+            // using built in JSON utility package turn object to string and store in a variabl
+            // create a JSON object with parameters for API call and store in a variable
+            var requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+            // make API call with parameters and use promises to get response
+            fetch("**MY API GET URL**", requestOptions)
+            .then(response => response.text())
+            .then(result => alert(JSON.parse(result).body))
+            .catch(error => console.log('error', error));
+        }
 
 fetchMoviesJSON().then((movies) => {
   console.log(movies); // Logs fetched movies
