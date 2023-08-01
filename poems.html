@@ -42,7 +42,7 @@
 
   <script >
 
-     function getPoems() {
+    async function getPoems() {
   try {
     const response = await GET('https://extinct-jade-bedclothes.cyclic.app/');
     const data = await response.json();
