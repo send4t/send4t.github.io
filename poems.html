@@ -40,7 +40,15 @@
   <div id="likeButtonContainer"></div>
   <div id="gifContainer"></div>
 
-  <script type="module" src="index.js">
+  <script type="module" >
+
+    import cors from "cors";
+const app = express();
+app.use(
+  cors({
+    origin: "*",
+  })
+);
     getPoem()
   </script>
  
