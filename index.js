@@ -1,4 +1,7 @@
-    
+
+const cors = require('cors');
+app.use(cors());
+
 async function getPoems() {
   try {
     const response = await fetch('https://extinct-jade-bedclothes.cyclic.app/');
