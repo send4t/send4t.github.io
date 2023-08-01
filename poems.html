@@ -32,10 +32,8 @@
 </head>
 <body>
   <h1>Véletlen vers</h1>
-  <div><button type="button" onclick="getUsers()">Mutass egy verset</button></div>
-  <div><button type="button" onclick="fetchMovies()">Mutass egy konyvet</button></div>
-    <div><button type="button" onclick="fetchMoviesJSON()">Mutass egy konyvetJSON</button></div>
-   <div><button type="button" onclick="callAPIRead()">Mutass egy konyvetAPIread</button></div>
+  <div><button type="button" onclick="getPoems()">Show me a poem</button></div>
+  
    <div id="author"></div>
   <div id="title"></div>
   <pre id="poem"></pre>
@@ -44,7 +42,7 @@
 
   <script type="module">
     
-async function getUsers() {
+async function getPoems() {
   try {
     const response = await fetch('https://extinct-jade-bedclothes.cyclic.app/');
     const data = await response.json();
@@ -53,7 +51,7 @@ async function getUsers() {
     console.error(error);
   }
 }
-getUsers();
+getPoems();
     
   </script>
  
