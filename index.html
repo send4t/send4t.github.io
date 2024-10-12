@@ -1,55 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Prediction Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive NFT Demo</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        #svg-container {
+            width: 400px; /* Set a maximum width */
+            height: auto;
+            position: relative;
+            overflow: hidden; /* Prevent overflow during glitch effect */
+            border: 1px solid #ccc; /* Optional border for visual clarity */
+        }
+        #art-svg {
+            transition: transform 0.3s ease; /* Smooth transition for scaling */
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .rain-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: none;
+        }
+        .raindrop {
+            position: absolute;
+            width: 2px;
+            height: 10px;
+            background: blue; /* Color of the raindrop */
+            animation: fall linear infinite; /* Animation for falling */
+        }
+        @keyframes fall {
+            0% {
+                top: -10px; /* Start above the container */
+                opacity: 1;
+            }
+            100% {
+                top: 100%; /* Move to the bottom of the container */
+                opacity: 0; /* Fade out effect */
+            }
+        }
+        .glitch {
+            animation: glitchEffect 0.3s forwards;
+        }
+        @keyframes glitchEffect {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(5px, -5px); }
+            50% { transform: translate(-5px, 5px); }
+            75% { transform: translate(5px, 5px); }
+            100% { transform: translate(0, 0); }
+        }
+    </style>
 </head>
 <body>
-  <h1>Prediction Website</h1>
-  <h2>Enter a number from 1 to 5 to predict the outcome of the gif.</h2>
-  <img id="theImage" src="https://gcdnb.pbrd.co/images/OqkNyycho3D0.gif" width="350" >
-  <input type="number" name="number" min="1" max="5" />
-  <button type="button" onclick="predict()">Predict</button>
-  <div id="gif"></div>
-  <div id="result"></div>
-  <div id="wanna"></div>
-   <div id="wannaa"></div>
-  <script>
-    var gif = document.getElementById("gif");
-    var images = [
-      "https://gcdnb.pbrd.co/images/AzJdAtWBAbSN.png",
-      "https://gcdnb.pbrd.co/images/lVf4MjJGHkiL.png",
-      "https://gcdnb.pbrd.co/images/GhnYeJbiktkX.png",
-      "https://gcdnb.pbrd.co/images/cyQEwyidPw1q.png",
-      "https://gcdnb.pbrd.co/images/txxE6kh90rct.png"
-    ];
+    <h1>Interactive NFT Demo</h1>
+    <div id="svg-container">
+        <!-- Link to the SVG file -->
+        <div id="art-svg">
+            <object data="Layer 1.svg" type="image/svg+xml" width="400"></object>
+        </div>
+        <!-- Rain effect overlay -->
+        <div class="rain-effect" id="rain-effect"></div>
+    </div>
+    <div class="button-container">
+        <button onclick="rotateSvg()">Rotate</button>
+        <button onclick="scaleSvg()">Scale</button>
+        <button onclick="toggleRain()">Rain</button>
+        <button onclick="glitchSvg()">Glitch</button> <!-- New glitch button -->
+    </div>
 
-    function predict() {
-    
-      var number = parseInt(document.querySelector("input[name=number]").value);
-      var random =  Math.floor(Math.random() * images.length)
-      var image = images[random];
-      
-      // document.getElementById("theImage").src=image; // Replace first image with random picture
-      
-      var imgElement = document.createElement("img");
-      imgElement.src = image;
-      imgElement.width="350";
+    <script>
+        let scale = 1;
+        let rotation = 0;
 
-      gif.innerHTML = ""; // Clear previous image
-      gif.appendChild(imgElement);
-     var result = document.getElementById("result");
-      result.innerHTML = ""; // Clear previous result
-       wanna.textContent = "this is number variable" +number
-      wannaa.textContent = "this is random variable" +random
+        // Function to rotate the SVG
+        function rotateSvg() {
+            rotation = (rotation + 45) % 360;
+            document.getElementById('art-svg').style.transform = `rotate(${rotation}deg)`;
+        }
 
-      if (number === random) {
-        result.textContent = "You won!";
-      } else {
-        result.textContent = "You lost!";
-      }
-    }
+        // Function to scale the SVG
+        function scaleSvg() {
+            scale = scale === 1 ? 1.5 : 1;
+            document.getElementById('art-svg').style.transform = `scale(${scale})`;
+        }
 
-    
-  </script>
+        // Function to toggle rain effect
+        function toggleRain() {
+            const rainEffect = document.getElementById('rain-effect');
+            if (rainEffect.style.display === 'none' || rainEffect.style.display === '') {
+                rainEffect.style.display = 'block';
+                createRain(); // Start creating raindrops
+            } else {
+                rainEffect.style.display = 'none';
+                rainEffect.innerHTML = ''; // Clear raindrops
+            }
+        }
+
+        // Function to create raindrops
+        function createRain() {
+            const rainEffect = document.getElementById('rain-effect');
+            rainEffect.innerHTML = ''; // Clear previous raindrops
+            const numberOfRaindrops = 50; // Adjust the number of raindrops
+
+            for (let i = 0; i < numberOfRaindrops; i++) { // Create raindrops
+                const drop = document.createElement('div');
+                drop.classList.add('raindrop');
+
+                // Position the raindrop randomly along the width of the container
+                drop.style.left = Math.random() * (rainEffect.clientWidth - 2) + 'px'; // Ensure drops fit within width
+                drop.style.animationDuration = (Math.random() * 1 + 0.5) + 's'; // Random fall speed
+
+                rainEffect.appendChild(drop);
+            }
+        }
+
+        // Function to apply glitch effect to the SVG
+        function glitchSvg() {
+            const svgObject = document.getElementById('art-svg');
+            svgObject.classList.add('glitch');
+
+            // Remove the glitch effect after a short duration
+            setTimeout(() => {
+                svgObject.classList.remove('glitch');
+            }, 1000); // Change this duration if you want the glitch effect to last longer
+        }
+    </script>
 </body>
 </html>
